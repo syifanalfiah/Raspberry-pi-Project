@@ -17,7 +17,7 @@
 | 1   | Aplikasi terminal                       |
 
 ### Skema Koneksi
-<img width="1881" height="1080" alt="image" src="https://github.com/user-attachments/assets/c40c5d42-3ea8-4850-a345-337692e1f011" />
+![WhatsApp Image 2025-10-15 at 11 59 56_fbbbb0d2](https://github.com/user-attachments/assets/7df2f183-32b6-44e4-91e7-31dfdd172140)
 
 | Pin HC-SR04 | Pin Raspberry Pi | Keterangan                      | 
 |-------------|------------------|---------------------------------|
