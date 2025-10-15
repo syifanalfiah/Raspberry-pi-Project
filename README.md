@@ -86,9 +86,7 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 ```
 
-# Raspberry Pi Ultrasonic Sensor (HC-SR04) – Full Code with Explanation
-
-Berikut kode lengkap beserta penjelasan per bagiannya untuk menghubungkan **Raspberry Pi** dengan **sensor ultrasonik HC-SR04** guna mengukur jarak objek di depannya.
+### Penjelasan Kode
 
 ```python
 import RPi.GPIO as GPIO
