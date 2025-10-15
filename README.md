@@ -18,6 +18,7 @@
 
 ### Skema Koneksi
 <img width="1881" height="1080" alt="image" src="https://github.com/user-attachments/assets/c40c5d42-3ea8-4850-a345-337692e1f011" />
+
 | Pin HC-SR04 | Pin Raspberry Pi | Keterangan                      | 
 |-------------|------------------|---------------------------------|
 | VCC         | Pin 2 (5V)       | Power 5V                        | 
