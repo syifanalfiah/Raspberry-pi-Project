@@ -85,6 +85,73 @@ except KeyboardInterrupt:
     print("Menghentikan program")
     GPIO.cleanup()
 ```
+
+# Raspberry Pi Ultrasonic Sensor (HC-SR04) – Full Code with Explanation
+
+Berikut kode lengkap beserta penjelasan per bagiannya untuk menghubungkan **Raspberry Pi** dengan **sensor ultrasonik HC-SR04** guna mengukur jarak objek di depannya.
+
+```python
+import RPi.GPIO as GPIO
+import time
+# Mengimpor library RPi.GPIO untuk mengontrol pin GPIO pada Raspberry Pi,
+# dan library time untuk mengatur jeda dan mencatat waktu.
+
+GPIO.setmode(GPIO.BCM)
+# Mengatur mode penomoran pin menggunakan sistem BCM (Broadcom).
+
+TRIG = 23
+ECHO = 24
+# Menetapkan pin TRIG pada GPIO 23 sebagai pemicu sinyal,
+# dan pin ECHO pada GPIO 24 sebagai penerima pantulan sinyal.
+
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+# Mengatur TRIG sebagai output dan ECHO sebagai input.
+
+def hitung_jarak():
+    GPIO.output(TRIG, False)
+    time.sleep(0.5)
+    # Memastikan TRIG dalam kondisi rendah agar tidak ada sinyal yang dikirim, lalu menunggu 0.5 detik.
+
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+    # Mengirimkan pulsa ultrasonik selama 10 mikrodetik.
+
+    while GPIO.input(ECHO) == 0:
+        waktu_mulai = time.time()
+    # Menunggu hingga sinyal pantulan diterima dan mencatat waktu mulai.
+
+    while GPIO.input(ECHO) == 1:
+        waktu_akhir = time.time()
+    # Mencatat waktu saat sinyal pantulan diterima kembali.
+
+    durasi = waktu_akhir - waktu_mulai
+    # Menghitung selisih waktu antara pengiriman dan penerimaan sinyal.
+
+    jarak = durasi * 17150
+    jarak = round(jarak, 2)
+    # Menghitung jarak dengan rumus (durasi × 17150), di mana 17150 adalah
+    # kecepatan suara (34300 cm/s) dibagi dua karena sinyal pergi-pulang.
+    # Hasil dibulatkan hingga dua angka desimal.
+
+    return jarak
+
+try:
+    while True:
+        jarak = hitung_jarak()
+        print(f"Jarak: {jarak} cm")
+        time.sleep(1)
+    # Program utama: memanggil fungsi hitung_jarak() terus-menerus
+    # dan menampilkan hasil pengukuran setiap 1 detik.
+
+except KeyboardInterrupt:
+    print("Menghentikan program")
+    GPIO.cleanup()
+    # Jika pengguna menekan Ctrl + C, program dihentikan dengan aman
+    # dan semua konfigurasi GPIO dikembalikan ke kondisi awal.
+```
+
 - Simpan dan jalankan program dengan `Python3`
 ```
 python3 sensor_jarak.py
